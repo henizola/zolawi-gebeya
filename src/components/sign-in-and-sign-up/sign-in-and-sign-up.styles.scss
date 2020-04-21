@@ -1,5 +1,6 @@
 .sign-in-sign-up{
 display: flex;
-flex-direction: column;
-width:800px;
+flex-direction: row;
+width:700px;
+justify-content: space-between;
 }
