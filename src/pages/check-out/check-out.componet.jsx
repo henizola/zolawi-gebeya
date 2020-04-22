@@ -23,9 +23,6 @@ const CheckOut =({cartItems,Total})=>(
         </div>
 
 );
-
-
-
 const mapStateToProps=createStructuredSelector(
     {cartItems:selectCartItems,
      Total:selectCartItemsTotal

@@ -20,10 +20,17 @@
     .quantity,
     .price {
       width: 23%;
+      .arrow{
+          
+      cursor: pointer;
+      margin: 0px 10px;
+      }
     }
   
     .quantity {
       padding-left: 20px;
+      display: flex;
+      flex-direction: row;
     }
   
     .remove-button {
