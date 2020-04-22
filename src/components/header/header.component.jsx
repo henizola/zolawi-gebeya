@@ -6,6 +6,9 @@ import {auth} from '../../firebase/firebase.utils';
 import {connect }  from 'react-redux';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-drop-down/cart-drop-down.component';
+import {selectCartHidden} from '../../redux/cart/cart.selecter';
+import {selectCurrentUser} from '../../redux/user/user.selector'
+import {createStructuredSelector} from 'reselect'
 const Header = ( {currentUser,hidden}) =>(
     <div className='outer-container'>
         <Link to='/' className='logo-container'>
@@ -29,10 +32,9 @@ const Header = ( {currentUser,hidden}) =>(
            </div>
 );
 
-const mapStateToProps = ({user:{currentUser},cart:{hidden}})=> ({
-    currentUser , //here the state is the root reducer and user is the usere reducer
-    // that is found in the user.reducer.js and currentUser is found in that object which initialli is null
-    hidden
+const mapStateToProps = createStructuredSelector({
+    currentUser:selectCurrentUser , //here the state is the root reducer and user is the usere reducer that is found in the user.reducer.js and currentUser is found in that object which initialli is null
+    hidden:selectCartHidden
 })
 
 export default connect(mapStateToProps)(Header);//now we recive the value of current user directlly from the user
