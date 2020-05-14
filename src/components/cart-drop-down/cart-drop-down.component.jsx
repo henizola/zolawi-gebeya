@@ -28,7 +28,7 @@ const CartDropdown=({cartItems,history,dispatch})=>(
             ()=>{history.push('/checkout');
             dispatch(toggleCartHidden());
                         }} 
-    style={{marginTop: 'auto', width:'100%', }}>GO TO CHECKOUT</CustomButton>
+    style={{marginTop: 'auto', width:'100%', } } Inverted={true}>GO TO CHECKOUT</CustomButton>
 
     </CartContainer>
 );
