@@ -1,7 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {ReactComponent as Logo } from '../../assets/1531643.svg'
-import './header.styles.scss'
 import {auth} from '../../firebase/firebase.utils';
 import {connect }  from 'react-redux';
 import CartIcon from '../cart-icon/cart-icon.component';
@@ -9,27 +7,35 @@ import CartDropdown from '../cart-drop-down/cart-drop-down.component';
 import {selectCartHidden} from '../../redux/cart/cart.selecter';
 import {selectCurrentUser} from '../../redux/user/user.selector'
 import {createStructuredSelector} from 'reselect'
+import './header.styles.scss'
+import {    OuterContainer,
+            OptionsContainer ,
+            OptionDiv,
+            OptionLink,
+            LogoContainer} from './header.style';
 const Header = ( {currentUser,hidden}) =>(
-    <div className='outer-container'>
-        <Link to='/' className='logo-container'>
-            <Logo className='logo'/>
-        </Link>
-        <div className='options-container'>
-            <Link to='/shop' className='option'>
+    <OuterContainer>
+       <LogoContainer to='/'>
+             <Logo className='logo'/>
+       </LogoContainer>
+       <OptionsContainer>
+            <OptionLink to='/shop' >
                     SHOP
-            </Link>
-            <Link to='/shop' className='option'>
+            </OptionLink>
+            <OptionLink to='/shop' >
                 CONTACT
-            </Link>
+            </OptionLink>
             {currentUser ?
-            <div className='option' onClick={()=>auth.signOut()}>SIGN OUT</div>
+            <OptionDiv onClick={()=>auth.signOut()}>SIGN OUT</OptionDiv>
             :
-            <Link to='/signin' className='option'>SIGN IN</Link>   
+            <OptionLink to='/signin'>SIGN IN</OptionLink>   
         }
         <CartIcon />
-        </div>
+       </OptionsContainer>
         {hidden?<CartDropdown/>:''} 
-           </div>
+    </OuterContainer>
+        
+        
 );
 
 const mapStateToProps = createStructuredSelector({
