@@ -31,17 +31,3 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
 			: cartItem
 	);
 };
-
-export const selectCartItemsCount = cartItems => {
-	return cartItems.reduce(
-		(accumilatedQuantity, cartItem) =>
-			accumilatedQuantity + cartItem.quantity,
-		0
-	);
-};
-export const selectCartItemsTotal = cartItems =>
-	cartItems.reduce(
-		(accumilatedTotal, cartItem) =>
-			accumilatedTotal + cartItem.quantity * cartItem.price,
-		0
-	);
