@@ -26,11 +26,9 @@ const CollectionItem = ({ item }) => {
 				<Name>{name}</Name>
 				<Price>{price}</Price>
 			</CollectionFooter>
-			<CustomButtonContainer>
-				<CustomButton onClick={() => addItem(item)} inverted>
-					Add to cart
-				</CustomButton>
-			</CustomButtonContainer>
+			<CustomButton onClick={() => addItem(item)} inverted>
+				Add to cart
+			</CustomButton>
 		</CollectionItemContainer>
 	);
 };

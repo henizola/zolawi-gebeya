@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
-import { ReactComponent as Logo } from '../../assets/1531643.svg';
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-drop-down/cart-drop-down.component';
-import './header.styles.scss';
 import {
-	OuterContainer,
+	HeaderContainer,
 	OptionsContainer,
 	OptionDiv,
 	OptionLink,
 	LogoContainer,
+	Logo,
 } from './header.style';
 import { CartContext } from '../../providers/cart/cart.provider';
 import CurrentUserContext from '../../contexts/current-user/current-user.context';
@@ -17,9 +16,9 @@ const Header = () => {
 	const currentUser = useContext(CurrentUserContext);
 	const { hidden } = useContext(CartContext);
 	return (
-		<OuterContainer>
+		<HeaderContainer>
 			<LogoContainer to='/'>
-				<Logo className='logo' />
+				<Logo />
 			</LogoContainer>
 			<OptionsContainer>
 				<OptionLink to='/shop'>SHOP</OptionLink>
@@ -35,7 +34,7 @@ const Header = () => {
 				<CartIcon />
 			</OptionsContainer>
 			{hidden ? <CartDropdown /> : ''}
-		</OuterContainer>
+		</HeaderContainer>
 	);
 };
 

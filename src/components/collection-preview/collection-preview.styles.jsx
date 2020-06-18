@@ -11,7 +11,15 @@ export const Title = styled(Link)`
 	margin-bottom: 25px;
 `;
 
+export const SamplesContainer = styled.div``;
+
 export const Preview = styled.div`
 	display: flex;
 	justify-content: space-between;
+	@media screen and (max-width: 800px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 10px;
+		margin-left: 40px;
+	}
 `;
