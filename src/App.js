@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, Profiler } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Spinner from './components/spinner/spinner.compoennt';
@@ -65,8 +65,14 @@ class App extends React.Component {
 				<Switch>
 					<ErrorBooundary>
 						<Suspense fallback={<Spinner />}>
-							<Route exact path='/' component={HomePage} />
-
+							<Profiler
+								id='homepage'
+								onRender={(id, phase, acctualDuration) =>
+									console.log({ id, phase, acctualDuration })
+								}
+							>
+								<Route exact path='/' component={HomePage} />
+							</Profiler>
 							<Route path='/Shop' component={ShopPage} />
 							<Route
 								exact
