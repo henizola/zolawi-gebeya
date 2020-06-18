@@ -3,9 +3,13 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Spinner from './components/spinner/spinner.compoennt';
 
+import ErrorBooundary from './components/error-boundary/erroe-boundary.component';
+
 import Header from './components/header/header.component';
 
 import { GlobalStyles } from './global.styles.jsx';
+
+import Contact from './pages/contact-us/contact-us.component';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
@@ -17,6 +21,7 @@ const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 const SignInAndSignUpPage = lazy(() =>
 	import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component')
 );
+
 class App extends React.Component {
 	unsubscribeFromAuth = null;
 	constructor() {
@@ -58,27 +63,30 @@ class App extends React.Component {
 					<Header />
 				</CurrentUserContext.Provider>
 				<Switch>
-					<Suspense fallback={<Spinner />}>
-						<Route exact path='/' component={HomePage} />
+					<ErrorBooundary>
+						<Suspense fallback={<Spinner />}>
+							<Route exact path='/' component={HomePage} />
 
-						<Route path='/Shop' component={ShopPage} />
-						<Route
-							exact
-							path='/checkout'
-							component={CheckoutPage}
-						/>
-						<Route
-							exact
-							path='/signin'
-							render={() =>
-								this.state.currentUser ? (
-									<Redirect to='/' />
-								) : (
-									<SignInAndSignUpPage />
-								)
-							}
-						/>
-					</Suspense>
+							<Route path='/Shop' component={ShopPage} />
+							<Route
+								exact
+								path='/checkout'
+								component={CheckoutPage}
+							/>
+							<Route
+								exact
+								path='/signin'
+								render={() =>
+									this.state.currentUser ? (
+										<Redirect to='/' />
+									) : (
+										<SignInAndSignUpPage />
+									)
+								}
+							/>
+							<Route exact path='/contact' component={Contact} />
+						</Suspense>
+					</ErrorBooundary>
 				</Switch>
 			</div>
 		);
